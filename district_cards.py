@@ -1,20 +1,7 @@
 import random
 
-class DistrictCard:
-    def __init__(self, name, cost, color, ability=None):
-        self.name = name
-        self.cost = cost
-        self.color = color
-        self.ability = ability
-
-    def use_ability(self):
-        if self.ability:
-            return self.ability()
-        else:
-            return "No ability."
-
-    def __repr__(self):
-        return f"{self.name} (Cost: {self.cost}, Color: {self.color})"
+from district_card_base import DistrictCard, Color
+from player import Player
 
 # Define abilities as functions
 def haunted_city_ability():
@@ -48,44 +35,45 @@ def dragon_gate_ability():
     return "Worth 8 points."
 
 # List of all district cards in the game
-DECK = [
+DECK: List[DistrictCard] = [
     # Blue (Religious)
-    DistrictCard("Temple", 1, "Blue"),
-    DistrictCard("Church", 2, "Blue"),
-    DistrictCard("Monastery", 3, "Blue"),
-    DistrictCard("Cathedral", 5, "Blue"),
+    DistrictCard("Temple", 1, Color.BLUE),
+    DistrictCard("Church", 2, Color.BLUE),
+    DistrictCard("Monastery", 3, Color.BLUE),
+    DistrictCard("Cathedral", 5, Color.BLUE),
 
     # Yellow (Trade)
-    DistrictCard("Tavern", 1, "Yellow"),
-    DistrictCard("Market", 2, "Yellow"),
-    DistrictCard("Trading Post", 2, "Yellow"),
-    DistrictCard("Docks", 3, "Yellow"),
-    DistrictCard("Harbor", 4, "Yellow"),
-    DistrictCard("Town Hall", 5, "Yellow"),
+    DistrictCard("Tavern", 1, Color.YELLOW),
+    DistrictCard("Market", 2, Color.YELLOW),
+    DistrictCard("Trading Post", 2, Color.YELLOW),
+    DistrictCard("Docks", 3, Color.YELLOW),
+    DistrictCard("Harbor", 4, Color.YELLOW),
+    DistrictCard("Town Hall", 5, Color.YELLOW),
 
     # Red (Military)
-    DistrictCard("Watchtower", 1, "Red"),
-    DistrictCard("Prison", 2, "Red"),
-    DistrictCard("Barracks", 3, "Red"),
-    DistrictCard("Fortress", 5, "Red"),
+    DistrictCard("Watchtower", 1, Color.RED),
+    DistrictCard("Prison", 2, Color.RED),
+    DistrictCard("Barracks", 3, Color.RED),
+    DistrictCard("Fortress", 5, Color.RED),
 
     # Green (Noble)
-    DistrictCard("Manor", 3, "Green"),
-    DistrictCard("Castle", 4, "Green"),
-    DistrictCard("Palace", 5, "Green"),
+    DistrictCard("Manor", 3, Color.GREEN),
+    DistrictCard("Castle", 4, Color.GREEN),
+    DistrictCard("Palace", 5, Color.GREEN),
 
     # Purple (Unique)
-    DistrictCard("Haunted City", 2, "Purple", haunted_city_ability),
-    DistrictCard("Keep", 3, "Purple", keep_ability),
-    DistrictCard("Laboratory", 5, "Purple", laboratory_ability),
-    DistrictCard("Smithy", 5, "Purple", smithy_ability),
-    DistrictCard("Observatory", 5, "Purple", observatory_ability),
-    DistrictCard("Graveyard", 5, "Purple", graveyard_ability),
-    DistrictCard("Library", 6, "Purple", library_ability),
-    DistrictCard("School of Magic", 6, "Purple", school_of_magic_ability),
-    DistrictCard("University", 6, "Purple", university_ability),
-    DistrictCard("Dragon Gate", 6, "Purple", dragon_gate_ability)
+    DistrictCard("Haunted City", 2, Color.PURPLE, haunted_city_ability),
+    DistrictCard("Keep", 3, Color.PURPLE, keep_ability),
+    DistrictCard("Laboratory", 5, Color.PURPLE, laboratory_ability),
+    DistrictCard("Smithy", 5, Color.PURPLE, smithy_ability),
+    DistrictCard("Observatory", 5, Color.PURPLE, observatory_ability),
+    DistrictCard("Graveyard", 5, Color.PURPLE, graveyard_ability),
+    DistrictCard("Library", 6, Color.PURPLE, library_ability),
+    DistrictCard("School of Magic", 6, Color.PURPLE, school_of_magic_ability),
+    DistrictCard("University", 6, Color.PURPLE, university_ability),
+    DistrictCard("Dragon Gate", 6, Color.PURPLE, dragon_gate_ability)
 ]
+
 
 # Function to shuffle and draw district cards
 def draw_district_cards(deck, num_cards):
