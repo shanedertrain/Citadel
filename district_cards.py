@@ -1,5 +1,7 @@
 import random
 
+from typing import List
+
 from district_card_base import DistrictCard, Color
 from player import Player
 

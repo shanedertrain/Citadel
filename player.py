@@ -2,8 +2,8 @@ import random
 
 from typing import Optional, List
 
-from character_cards import CharacterCard
-from district_cards import DistrictCard
+from character_card_base import CharacterCard
+from district_card_base import DistrictCard
 
 class Player:
     def __init__(self, name):
@@ -36,7 +36,7 @@ class Player:
             
             drawn_cards.remove(card_to_keep)
             card_to_discard = drawn_cards[0]
-            
+
             print(f"{self.name} kept: {card_to_keep} and discarded: {card_to_discard}")
 
     def play_card(self, card):
